@@ -1,0 +1,17 @@
+{
+  "name": "credit card",
+  "productName": "ICredit card validation",
+  "version": "1.0.0",
+  "description": "Credit card validation test",
+  "main": "main.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hamzaPixl/creditCard.git"
+  },
+  "author": "Mounir Hamza",
+  "license": "MIT",
+  "dependencies": {
+    "requirejs": "^2.3.3"
+  }
+}
