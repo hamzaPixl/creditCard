@@ -1,11 +1,11 @@
 define(function () {
 
-  function Visa () {
+  function MasterCard () {
 
   }
 
-  Visa.prototype = {};
+  MasterCard.prototype = {};
 
-  return Visa;
+  return MasterCard;
 
 });
