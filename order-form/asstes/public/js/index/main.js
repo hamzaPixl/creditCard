@@ -3,5 +3,9 @@
  */
 require([], function () {
 
+  $( "#card" ).change(function(event) {
+    console.log(event);
+  });
+
 });
 
