@@ -1,13 +1,12 @@
 /**
  * Created by imha on 11/05/2017.
  */
-require(['./index/service/eventBus', './index/Cards', './index/Render'], function (eventBus, Cards, Render) {
+require(['./index/service/eventBus', './index/Cards', './index/Render'], function (eventBus, cards, Render) {
 
-  const cards = new Cards(eventBus);
-  const render = new Render(eventBus,$);
+  const render = new Render(eventBus, $);
 
   $('#card').keyup(function (event) {
-    eventBus.trigger('card:detect', cards.typeCard($(event.target).val()));
+    eventBus.trigger('card:detect', cards.validCard($(event.target).val()));
   });
 
 });
