@@ -20,7 +20,7 @@ define([], function () {
     },
 
     /**
-     * display the name of card
+     * display the name of card and his validation
      * @param event
      * @param data
      */
