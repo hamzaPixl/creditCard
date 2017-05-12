@@ -1,53 +1,35 @@
 /**
  * Created by imha on 12/05/2017.
  */
-define(['./card/AmericanExpress', './card/MasterCard', './card/Visa'], function (americanExpress, masterCard, visa) {
+define([], function () {
 
-  function Cards (eventBus) {
+  function Render (eventBus, $) {
     this.eventBus = eventBus;
-    this.cards = [americanExpress, masterCard, visa];
-    this.attachListeners();
+    this.$typeCard = $('#type');
+    this.displayNameCard = this.displayNameCard.bind(this);
+    this.attachEventListeners();
   }
 
-  Cards.prototype = {
+  Render.prototype = {
 
     /**
      *
      */
-    attachListeners: function attachListeners () {
+    attachEventListeners: function attachEventListeners () {
+      this.eventBus.on('card:detect', this.displayNameCard);
     },
 
     /**
      *
+     * @param event
      * @param data
      */
-    typeCard: function typeCard (data) {
-      if (this.parameterIsValid(data)) {
-        this.cards.forEach((card) => {
-          if (card.isMyType(data)) {
-
-          }
-        });
-      }
-    },
-
-    /**
-     * Check if the parmetre of the form is valid
-     * @param data
-     * @return {boolean}
-     */
-    parameterIsValid: function parameterIsValid (data) {
-      if (!data || data === '') {
-        return false;
-      }
-      if (typeof data !== 'string') {
-        return false;
-      }
-      return true;
+    displayNameCard: function displayNameCard (event, data) {
+      this.$typeCard.html(data);
     },
 
   };
 
-  return Cards;
+  return Render;
 
 });
