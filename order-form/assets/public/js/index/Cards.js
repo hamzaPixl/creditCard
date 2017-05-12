@@ -47,7 +47,7 @@ define(['./card/AmericanExpress', './card/MasterCard', './card/Visa'], function 
       if (typeof data !== 'string') {
         return false;
       }
-      return true;
+      return /^\d+$/.test(data);
     },
 
     /**
