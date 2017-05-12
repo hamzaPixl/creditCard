@@ -2,6 +2,8 @@ define(function () {
 
   function AmericanExpress () {
     this.name = 'American Express';
+    this.isMyType = this.isMyType.bind(this);
+    this.isValid = this.isValid.bind(this);
   }
 
   AmericanExpress.prototype = {

@@ -2,6 +2,8 @@ define(function () {
 
   function Visa () {
     this.name = 'Visa';
+    this.isMyType = this.isMyType.bind(this);
+    this.isValid = this.isValid.bind(this);
   }
 
   Visa.prototype = {

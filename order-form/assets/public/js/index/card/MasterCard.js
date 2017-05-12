@@ -2,6 +2,8 @@ define(function () {
 
   function MasterCard () {
     this.name = 'Master Card';
+    this.isMyType = this.isMyType.bind(this);
+    this.isValid = this.isValid.bind(this);
   }
 
   MasterCard.prototype = {
