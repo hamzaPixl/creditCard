@@ -3,28 +3,36 @@
  */
 define(['./card/AmericanExpress', './card/MasterCard', './card/Visa'], function (americanExpress, masterCard, visa) {
 
-  function Cards (eventBus) {
-    this.eventBus = eventBus;
+  function Cards () {
     this.cards = [americanExpress, masterCard, visa];
+    this.validCard = this.validCard.bind(this);
+    this.parameterIsValid = this.parameterIsValid.bind(this);
+    this.lhunValidation = this.lhunValidation.bind(this);
   }
 
   Cards.prototype = {
 
     /**
-     * Return name of card type
+     * Validation of the card number
      * @param data
+     * @return {{name: string, validation: string}}
      */
-    typeCard: function typeCard (data) {
-      let type = '?';
+    validCard: function validCard (data) {
+      let validation = {name: '?', validation: '', card: false};
       if (!this.parameterIsValid(data)) {
-        return type = '';
+        validation.name = '';
+        return validation;
       }
       this.cards.forEach((card) => {
         if (card.isMyType(data)) {
-          type = card.name;
+          validation.card = true;
+          validation.name = card.name;
+          validation.validation = card.isValid(data);
+          //with lhun version
+          //validation.validation = this.lhunValidation(data);
         }
       });
-      return type;
+      return validation;
     },
 
     /**
@@ -42,8 +50,21 @@ define(['./card/AmericanExpress', './card/MasterCard', './card/Visa'], function 
       return true;
     },
 
+    /**
+     * Lhun validation
+     * @param data
+     * @return {boolean}
+     */
+    lhunValidation: function lhunValidation (data) {
+      var sum = 0, even = false;
+      data.split('').reverse().forEach(function (dstr) {
+        d = parseInt(dstr);
+        sum += ((even = !even) ? d : (d < 5) ? d * 2 : (d - 5) * 2 + 1);
+      });
+      return (sum % 10 == 0);
+    }
   };
 
-  return Cards;
+  return new Cards();
 
 });
