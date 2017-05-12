@@ -61,8 +61,7 @@ define(['./card/AmericanExpress', './card/MasterCard', './card/Visa'], function 
       let parity = numdigits % 2;
       for (let i = 0; i < numdigits; i++) {
         let digit = parseInt(data.charAt(i));
-        if (i % 2 == parity) digit *= 2;
-        if (digit > 9) digit -= 9;
+        digit = i % 2 === parity ? (digit * 2) > 9 ? digit -= 9 : digit : digit;
         sum += digit;
       }
       return (sum % 10) == 0;
