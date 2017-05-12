@@ -56,13 +56,18 @@ define(['./card/AmericanExpress', './card/MasterCard', './card/Visa'], function 
      * @return {boolean}
      */
     lhunValidation: function lhunValidation (data) {
-      var sum = 0, even = false;
-      data.split('').reverse().forEach(function (dstr) {
-        d = parseInt(dstr);
-        sum += ((even = !even) ? d : (d < 5) ? d * 2 : (d - 5) * 2 + 1);
-      });
-      return (sum % 10 == 0);
+      let sum = 0;
+      let numdigits = data.length;
+      let parity = numdigits % 2;
+      for (let i = 0; i < numdigits; i++) {
+        let digit = parseInt(data.charAt(i));
+        if (i % 2 == parity) digit *= 2;
+        if (digit > 9) digit -= 9;
+        sum += digit;
+      }
+      return (sum % 10) == 0;
     }
+
   };
 
   return new Cards();
