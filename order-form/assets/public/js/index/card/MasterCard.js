@@ -15,6 +15,15 @@ define(function () {
       return data.startsWith('5');
     },
 
+    /**
+     * Check if number card is valid
+     * @param data
+     * @return {boolean}
+     */
+    isValid: function isValid (data) {
+      return data.length === 16;
+    }
+
   };
 
   return new MasterCard();

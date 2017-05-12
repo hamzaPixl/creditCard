@@ -18,6 +18,15 @@ define(function () {
       return data.startsWith('34') || data.startsWith('37');
     },
 
+    /**
+     * Check if number card is valid
+     * @param data
+     * @return {boolean}
+     */
+    isValid: function isValid (data) {
+      return data.length === 15;
+    },
+
   };
 
   return new AmericanExpress();
