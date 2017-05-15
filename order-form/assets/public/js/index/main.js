@@ -1,11 +1,9 @@
 /**
  * Created by imha on 11/05/2017.
  */
-require(['./index/service/eventBus', './index/Cards', './index/Render'], function (eventBus, cards, Render) {
+require(['./index/service/eventBus', './index/cards', './index/render'], function (eventBus, cards, render) {
 
-  const render = new Render(eventBus, $);
-
-  $('#card').keyup(function (event) {
+  $('#card').on('input',function (event) {
     eventBus.trigger('card:detect', cards.validCard($(event.target).val()));
   });
 

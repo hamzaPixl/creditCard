@@ -1,10 +1,9 @@
 /**
  * Created by imha on 12/05/2017.
  */
-define([], function () {
+define(['./service/eventBus'], function (eventBus) {
 
-  function Render (eventBus, $) {
-    this.eventBus = eventBus;
+  function Render () {
     this.$typeCard = $('#type');
     this.displayNameCard = this.displayNameCard.bind(this);
     this.attachEventListeners();
@@ -16,7 +15,7 @@ define([], function () {
      * Attach event listeners for event bus
      */
     attachEventListeners: function attachEventListeners () {
-      this.eventBus.on('card:detect', this.displayNameCard);
+      eventBus.on('card:detect', this.displayNameCard);
     },
 
     /**
@@ -35,6 +34,6 @@ define([], function () {
 
   };
 
-  return Render;
+  return new Render();
 
 });
